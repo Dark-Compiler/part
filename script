@@ -65,11 +65,11 @@ local function spawnNPC()
     npc.PrimaryPart = torso
     npc.Parent = workspace.CurrentCamera -- client-only
 
-    -- Fake follow behavior (NPC stays to the right side of player)
+    -- Fake follow behavior (NPC stays at right shoulder, slightly back)
     game:GetService("RunService").RenderStepped:Connect(function()
         if humanoidRootPart then
-            -- Offset: move 5 studs to the right of player
-            local offset = Vector3.new(5, 0, 0)
+            -- Offset: closer to right shoulder, slightly behind
+            local offset = Vector3.new(3, 1, -2)
             local baseCFrame = humanoidRootPart.CFrame * CFrame.new(offset)
 
             torso.CFrame = baseCFrame
