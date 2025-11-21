@@ -17,69 +17,69 @@ button.Parent = screenGui
 
 -- Function to spawn NPC locally
 local function spawnNPC()
-    local npc = Instance.new("Model")
-    npc.Name = "LocalNPC"
+	local npc = Instance.new("Model")
+	npc.Name = "LocalNPC"
 
-    -- Torso
-    local torso = Instance.new("Part")
-    torso.Name = "Torso"
-    torso.Size = Vector3.new(2, 2, 1)
-    torso.Anchored = true
-    torso.Parent = npc
+	-- Torso
+	local torso = Instance.new("Part")
+	torso.Name = "Torso"
+	torso.Size = Vector3.new(2, 2, 1)
+	torso.Anchored = true
+	torso.Parent = npc
 
-    -- Head
-    local head = Instance.new("Part")
-    head.Name = "Head"
-    head.Size = Vector3.new(2, 1, 1)
-    head.Anchored = true
-    head.Parent = npc
+	-- Head
+	local head = Instance.new("Part")
+	head.Name = "Head"
+	head.Size = Vector3.new(2, 1, 1)
+	head.Anchored = true
+	head.Parent = npc
 
-    -- Left Arm
-    local leftArm = Instance.new("Part")
-    leftArm.Name = "LeftArm"
-    leftArm.Size = Vector3.new(1, 2, 1)
-    leftArm.Anchored = true
-    leftArm.Parent = npc
+	-- Left Arm
+	local leftArm = Instance.new("Part")
+	leftArm.Name = "LeftArm"
+	leftArm.Size = Vector3.new(1, 2, 1)
+	leftArm.Anchored = true
+	leftArm.Parent = npc
 
-    -- Right Arm
-    local rightArm = Instance.new("Part")
-    rightArm.Name = "RightArm"
-    rightArm.Size = Vector3.new(1, 2, 1)
-    rightArm.Anchored = true
-    rightArm.Parent = npc
+	-- Right Arm
+	local rightArm = Instance.new("Part")
+	rightArm.Name = "RightArm"
+	rightArm.Size = Vector3.new(1, 2, 1)
+	rightArm.Anchored = true
+	rightArm.Parent = npc
 
-    -- Left Leg
-    local leftLeg = Instance.new("Part")
-    leftLeg.Name = "LeftLeg"
-    leftLeg.Size = Vector3.new(1, 2, 1)
-    leftLeg.Anchored = true
-    leftLeg.Parent = npc
+	-- Left Leg
+	local leftLeg = Instance.new("Part")
+	leftLeg.Name = "LeftLeg"
+	leftLeg.Size = Vector3.new(1, 2, 1)
+	leftLeg.Anchored = true
+	leftLeg.Parent = npc
 
-    -- Right Leg
-    local rightLeg = Instance.new("Part")
-    rightLeg.Name = "RightLeg"
-    rightLeg.Size = Vector3.new(1, 2, 1)
-    rightLeg.Anchored = true
-    rightLeg.Parent = npc
+	-- Right Leg
+	local rightLeg = Instance.new("Part")
+	rightLeg.Name = "RightLeg"
+	rightLeg.Size = Vector3.new(1, 2, 1)
+	rightLeg.Anchored = true
+	rightLeg.Parent = npc
 
-    npc.PrimaryPart = torso
-    npc.Parent = workspace.CurrentCamera -- client-only
+	npc.PrimaryPart = torso
+	npc.Parent = workspace.CurrentCamera -- client-only
 
-    -- Fake follow behavior (NPC stays at right shoulder, slightly back)
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if humanoidRootPart then
-            -- Offset: closer to right shoulder, slightly behind
-            local offset = Vector3.new(3, 1, -2)
-            local baseCFrame = humanoidRootPart.CFrame * CFrame.new(offset)
+	-- Fake follow behavior (NPC stays at right shoulder, slightly back)
+	game:GetService("RunService").RenderStepped:Connect(function()
+		if humanoidRootPart then
+			-- Offset: right side (X), shoulder height (Y), slightly back (negative Z)
+			local offset = Vector3.new(3, 1, 2)
+			local baseCFrame = humanoidRootPart.CFrame * CFrame.new(offset)
 
-            torso.CFrame = baseCFrame
-            head.CFrame = baseCFrame * CFrame.new(0, 1.5, 0)
-            leftArm.CFrame = baseCFrame * CFrame.new(-1.5, 0.5, 0)
-            rightArm.CFrame = baseCFrame * CFrame.new(1.5, 0.5, 0)
-            leftLeg.CFrame = baseCFrame * CFrame.new(-0.5, -2, 0)
-            rightLeg.CFrame = baseCFrame * CFrame.new(0.5, -2, 0)
-        end
-    end)
+			torso.CFrame = baseCFrame
+			head.CFrame = baseCFrame * CFrame.new(0, 1.5, 0)
+			leftArm.CFrame = baseCFrame * CFrame.new(-1.5, 0.5, 0)
+			rightArm.CFrame = baseCFrame * CFrame.new(1.5, 0.5, 0)
+			leftLeg.CFrame = baseCFrame * CFrame.new(-0.5, -2, 0)
+			rightLeg.CFrame = baseCFrame * CFrame.new(0.5, -2, 0)
+		end
+	end)
 end
 
 -- Button click spawns NPC
